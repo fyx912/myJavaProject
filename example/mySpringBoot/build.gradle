@@ -1,0 +1,77 @@
+/*
+    buildscript代码块中的声明是gradle脚本自身需要的资源。
+    可以声明的资源包括依赖项、第三方插件、maven仓库地址等。
+    gradle在执行脚本时，会优先执行buildscript代码块中的内容，然后才会执行剩余的build脚本。
+*/
+buildscript {
+    /**
+     * gradle脚本执行所需依赖，分别是对应的maven库和插件
+     */
+    buildscript {
+        //配置全局依赖版本信息
+        ext {  //定义一个变量，统一规定springboot的版本
+            springBootVersion = '3.0.2'
+        }
+        repositories {
+            mavenLocal()
+            maven { url "https://maven.aliyun.com/repository/public" }
+            mavenCentral()
+        }
+        dependencies {
+            classpath (
+                    "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+            )
+        }
+    }
+}
+
+//配置所有项目公共内容
+allprojects {
+    group 'com.ding'
+    version '1.0-SNAPSHOT'
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    sourceCompatibility = 17
+    targetCompatibility = 17
+}
+//配置子工程
+subprojects {
+    /* 注意gradle插件不再自动应用，所以这里需要指定 */
+    apply plugin: 'org.springframework.boot'
+    /* 依赖管理插件仍然是一个spring-boot-gradle-plugin传递依赖，所以无需在build.gradle配置中明确列出此依赖。 */
+    apply plugin: 'io.spring.dependency-management' /* 依赖管理，用来传递spring的依赖 */
+
+    /* java编译的时候缺省状态下会因为中文字符而失败 */
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+//        maven { url "https://central.maven.org/maven2/" }
+        mavenCentral()
+    }
+    //配置子模块依赖
+    dependencies{
+        implementation (
+                "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}",
+                "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
+                "org.springframework.boot:spring-boot-starter-logging:${springBootVersion}",
+                "org.springframework.boot:spring-boot-devtools:${springBootVersion}",
+
+                "com.google.guava:guava:31.1-jre",
+                "commons-lang:commons-lang:2.6",
+                group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+
+        )
+        implementation group: 'com.alibaba', name: 'fastjson', version: '2.0.24'
+
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    }
+}
+
+
+task copyTestResources(type: Copy) {
+    from "${projectDir}/src/main/resources"
+    into "${buildDir}/classes/main"
+}
+processTestResources.dependsOn copyTestResources

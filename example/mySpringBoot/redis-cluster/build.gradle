@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group 'com.ding'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+test{
+    useJUnitPlatform()
+}
+
+dependencies {
+    implementation (
+            "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-cache:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
+            //<!--redis连接池 end-->
+//            "org.apache.commons:commons-pool2:2.1.11",
+
+            "mysql:mysql-connector-java:8.0.30",
+            //<!-- mybatis -->
+            "org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2"
+
+
+    )
+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.2.0'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.2.0'
+}
+
+//编译xml
+processResources {
+    from('src/main/java'){
+        include '**/*.xml'
+    }
+}

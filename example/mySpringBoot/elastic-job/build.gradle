@@ -1,0 +1,23 @@
+group 'com.ding'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+ext{
+    dangdangVsersion = "2.1.5"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(
+            "com.dangdang:elastic-job-lite-core:${dangdangVsersion}",
+            "com.dangdang:elastic-job-lite-spring:${dangdangVsersion}",
+
+            "org.springframework.boot:spring-boot-starter-web"
+    )
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}

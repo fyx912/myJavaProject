@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'com.ding'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(
+//            "org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
+            "org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1",
+            "mysql:mysql-connector-java:8.0.32",
+            "org.apache.shardingsphere:shardingsphere-jdbc-core-spring-boot-starter:5.2.1",
+    )
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.14.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
