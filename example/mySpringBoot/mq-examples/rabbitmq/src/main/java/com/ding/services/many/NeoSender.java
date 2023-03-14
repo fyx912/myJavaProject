@@ -20,7 +20,5 @@ public class NeoSender {
         String context = "spring boot neo queue"+" ****** "+i;
         System.out.println("Sender2 : " + context);
         this.amqpTemplate.convertAndSend("neo", context);
-
-        AMQP.BasicProperties
     }
 }

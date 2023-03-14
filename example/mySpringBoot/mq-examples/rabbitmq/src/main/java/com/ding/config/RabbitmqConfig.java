@@ -68,10 +68,19 @@ public class RabbitmqConfig {
         Logger logger = LoggerFactory.getLogger(RabbitTemplate.class);
         //消息发送失败返回队列中,配置文件中publisher-returns:true
         rabbitTemplate.setMandatory(true);
+
         //消息返回，yml需要配置publisher-returns:true
-        rabbitTemplate.setReturnCallback((message,replyCode,replyText, exchange,routingKey)->{
-            String correlationId = message.getMessageProperties().getCorrelationId();
-            logger.info("rabbitTemplate 消息:{},发送:{} ,原因:{} ,交换机:{}, 路由key:{}",correlationId,replyCode,replyText,exchange,routingKey);
+
+        //(方法已过时)
+//        rabbitTemplate.setReturnCallback((message,replyCode,replyText, exchange,routingKey)->{
+//            String correlationId = message.getMessageProperties().getCorrelationId();
+//            logger.info("rabbitTemplate 消息:{},发送:{} ,原因:{} ,交换机:{}, 路由key:{}",correlationId,replyCode,replyText,exchange,routingKey);
+//        });
+
+        //消息返回，yml需要配置publisher-returns:true
+        rabbitTemplate.setReturnsCallback(returned -> {
+            String correlationId =  returned.getMessage().getMessageProperties().getCorrelationId();
+            logger.info("rabbitTemplate 消息:{},发送:{} ,原因:{} ,交换机:{}, 路由key:{}",correlationId,returned.getReplyCode(),returned.getReplyText(),returned.getExchange(),returned.getRoutingKey());
         });
         //消息返回，yml需要配置publisher-confirm:true
         rabbitTemplate.setConfirmCallback(( correlationData,ack,cause)->{
