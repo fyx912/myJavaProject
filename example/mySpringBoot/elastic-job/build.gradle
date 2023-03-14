@@ -13,11 +13,16 @@ repositories {
 
 dependencies {
     implementation(
+            //zookeeper的版本不一致问题 start
+            "org.apache.curator:curator-recipes:2.13.0",
+            //zookeeper的版本不一致问题 end
+
             "com.dangdang:elastic-job-lite-core:${dangdangVsersion}",
             "com.dangdang:elastic-job-lite-spring:${dangdangVsersion}",
 
             "org.springframework.boot:spring-boot-starter-web"
     )
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }

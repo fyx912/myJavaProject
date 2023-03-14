@@ -16,7 +16,8 @@ import org.springframework.context.annotation.Configuration;
 public class RegistryCenterConfig {
 
     @Bean(initMethod = "init")
-    public ZookeeperRegistryCenter regCenter(@Value("${elasticJob.zookeeper.serverList}") final String serverList, @Value("${elasticJob.zookeeper.namespace}") final String namespace) {
+    public ZookeeperRegistryCenter regCenter(@Value("${elasticJob.zookeeper.serverList}") final String serverList,
+                                             @Value("${elasticJob.zookeeper.namespace}") final String namespace) {
         return new ZookeeperRegistryCenter(new ZookeeperConfiguration(serverList, namespace));
     }
 
