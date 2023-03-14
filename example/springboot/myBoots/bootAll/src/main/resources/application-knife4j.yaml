@@ -1,0 +1,19 @@
+knife4j:
+  enable: true
+  openapi:
+    title: Knife4j\u5B98\u65B9\u6587\u6863
+    description: "`\u6211\u662F\u6D4B\u8BD5`,**\u4F60\u77E5\u9053\u5417**
+    # aaa"
+    email: xiaoymin@foxmail.com
+    concat: \u516B\u4E00\u83DC\u5200
+    url: https://docs.xiaominfo.com
+    version: v4.0
+    license: Apache 2.0
+    license-url: https://stackoverflow.com/
+    terms-of-service-url: https://stackoverflow.com/
+    group:
+      test1:
+        group-name: \u5206\u7EC4\u540D\u79F0
+        api-rule: package
+        api-rule-resources:
+          - com.ding.boots.web

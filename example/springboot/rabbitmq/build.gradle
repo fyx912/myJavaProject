@@ -1,0 +1,15 @@
+group 'com.ding'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(
+            "org.springframework.boot:spring-boot-starter-amqp:${springBootVersion}"
+    )
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}

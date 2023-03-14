@@ -1,0 +1,51 @@
+server:
+  port: 8081
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #Mybatis开启驼峰映射
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:com.ding.dao/*.xml
+  type-aliases-package: com.ding.entity
+spring:
+  shardingsphere:
+    props:
+      sql-show: true                                   #打印SQL
+    datasource:
+      #数据源配置，后面接数据源的名称，使用,分隔，比如此处有两个数据源
+      names: master,slave
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/boss?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=UTC
+        username: ding
+        password: 123456
+      slave:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3307/boss?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=UTC
+        username: ding
+        password: 123456
+    #读写分离配置
+    rules:
+      readwrite-splitting:
+        data-sources:
+          # 读写分离名称
+          readwrite_ds:
+            static-strategy:
+              ##写库数据源
+              write-data-source-name: master
+              #读库数据源(多个从数据源用逗号分隔)
+              read-data-source-names: slave
+            #负载均衡配置
+            load-balancer-name: round_robin
+            ## 负载均衡算法配置
+        load-balancers:
+          round_robin:
+            ## 负载均衡算法类型
+            type: ROUND_ROBIN
+
+
+
+
+

@@ -1,0 +1,10 @@
+minio:
+  enable: true
+  # 账号
+  accessKey: minio
+  # 密码
+  secretKey: minio123456
+  # 存储MinIO桶名字
+  bucketName: dev
+  # minio配置的地址，端口9000
+  endpoint: http://172.25.152.207:9000

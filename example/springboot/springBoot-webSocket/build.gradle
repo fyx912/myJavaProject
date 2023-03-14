@@ -1,0 +1,16 @@
+group 'com.ding'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(
+            "org.springframework.boot:spring-boot-starter-websocket:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
+    )
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}

@@ -1,0 +1,29 @@
+group 'com.ding'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext{
+    esVersion = "7.6.0"
+}
+
+dependencies {
+    implementation(
+            "org.elasticsearch:elasticsearch:${esVersion}",
+            "org.elasticsearch.client:elasticsearch-rest-client:${esVersion}",
+
+            'com.hankcs:hanlp:portable-1.7.7',
+            "com.github.magese:ik-analyzer:8.3.0",
+            "org.springframework.boot:spring-boot-starter-aop"
+    )
+    implementation (
+            "org.elasticsearch.client:elasticsearch-rest-high-level-client:${esVersion}"){
+        //排除依懒
+        exclude group: "org.elasticsearch",module:'elasticsearch'
+        exclude group: "org.elasticsearch.client",module: "elasticsearch-rest-client"
+    }
+
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}

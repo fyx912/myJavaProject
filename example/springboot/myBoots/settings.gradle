@@ -1,0 +1,5 @@
+rootProject.name = 'myBoots'
+include 'bootAll'
+include 'common'
+include 'model'
+

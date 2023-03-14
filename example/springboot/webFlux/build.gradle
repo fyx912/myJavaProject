@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.ding'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compile.exclude module: 'spring-boot-starter-web'
+    all*.exclude group:'org.springframework.boot', module: 'spring-boot-starter-web'
+
+}
+
+dependencies {
+    implementation (
+            "org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}"
+    )
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
