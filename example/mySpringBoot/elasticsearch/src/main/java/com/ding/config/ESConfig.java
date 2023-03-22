@@ -60,12 +60,4 @@ public class ESConfig {
 
 
 
-//
-//    @Bean("esUtilService")
-//    @ConditionalOnMissingBean
-//    @DependsOn(value = "restHighLevelClient")
-//    public EsUtilService esUtilService(){
-//        return  new EsUtilServiceImpl();
-//    }
-
 }

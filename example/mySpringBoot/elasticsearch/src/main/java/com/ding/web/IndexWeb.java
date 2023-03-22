@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexWeb {
 
-    @GetMapping("")
+    @GetMapping
     public String index(){
         return "welcome use elasticsearch 7.x services!";
     }

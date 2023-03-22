@@ -24,13 +24,8 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @ComponentScan({"com.ding.*"})
-public class Application {
+public class EsApp {
     public static void main(String[] args){
-        SpringApplication.run(Application.class,args);
-//        ApplicationContext applicationContext =
-//                SpringApplication.run(Application.class,args);
-//        for (String name : applicationContext.getBeanDefinitionNames()) {
-//            System.out.println(name);
-//        }
+        SpringApplication.run(EsApp.class,args);
     }
 }
