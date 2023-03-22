@@ -10,12 +10,11 @@ buildscript {
     buildscript {
         //配置全局依赖版本信息
         ext {  //定义一个变量，统一规定springboot的版本
-            springBootVersion = '3.0.2'
+            springBootVersion = '3.0.4'
         }
         repositories {
             mavenLocal()
             maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
-            maven { url "https://central.maven.org/maven2/" }
             mavenCentral()
         }
         dependencies {
@@ -68,7 +67,7 @@ subprojects {
                 group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
 
         )
-        implementation group: 'com.alibaba', name: 'fastjson', version: '2.0.12'
+        implementation group: 'com.alibaba', name: 'fastjson', version: '2.0.24'
         testImplementation group: 'junit', name: 'junit', version: '4.12'
     }
     dependencyManagement {
