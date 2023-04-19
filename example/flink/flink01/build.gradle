@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'com.ding'
+version '.'
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/repository/public" }
+    mavenCentral()
+}
+
+dependencies {
+    implementation(
+            "org.apache.flink:flink-java:1.17.0",
+            "org.apache.flink:flink-streaming-java:1.17.0",
+            "org.apache.flink:flink-clients:1.17.0"
+    )
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
