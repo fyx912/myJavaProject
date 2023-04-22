@@ -11,4 +11,5 @@ include 'mq-examples:rabbitmq'
 findProject(':mq-examples:rabbitmq')?.name = 'rabbitmq'
 include 'mq-examples:kafaka'
 findProject(':mq-examples:kafaka')?.name = 'kafaka'
+include 'logstash'
 
