@@ -30,7 +30,7 @@ public class SpringDocConfig {
                         .description("fyx912接口文档说明")
                         .version("v0.0.1-SNAPSHOT")
                         .license(new License().name("fyx912项目博客专栏")
-                                .url("https://blog.csdn.net/weihao0240/category_12166012.html")))
+                                .url("https://baidu.com")))
                 .externalDocs(new ExternalDocumentation()
                         .description("github项目地址")
                         .url("https://github.com/"))

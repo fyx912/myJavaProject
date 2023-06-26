@@ -13,12 +13,15 @@ repositories {
 
 dependencies {
     implementation(
-            //zookeeper的版本不一致问题 start
-            "org.apache.curator:curator-recipes:2.13.0",
-            //zookeeper的版本不一致问题 end
+//            //zookeeper的版本不一致问题 start
+//            "org.apache.curator:curator-recipes:2.13.0",
+//            //zookeeper的版本不一致问题 end
+//
+//            "com.dangdang:elastic-job-lite-core:${dangdangVsersion}",
+//            "com.dangdang:elastic-job-lite-spring:${dangdangVsersion}",
 
-            "com.dangdang:elastic-job-lite-core:${dangdangVsersion}",
-            "com.dangdang:elastic-job-lite-spring:${dangdangVsersion}",
+            "org.apache.shardingsphere.elasticjob:elasticjob-lite-core:3.0.3",
+            "org.apache.shardingsphere.elasticjob:elasticjob-lite-spring-boot-starter:3.0.3",
 
             "org.springframework.boot:spring-boot-starter-web"
     )

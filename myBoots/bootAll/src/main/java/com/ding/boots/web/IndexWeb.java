@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 @RestController
 public class IndexWeb {
 
-    @GetMapping("")
+    @GetMapping("/")
     public ApiResult index(){
         return ApiResult.success("welcome to use BootAll......");
     }
