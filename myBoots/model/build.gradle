@@ -17,8 +17,8 @@ sourceSets.main.resources.srcDirs = ["src/main/java","src/main/resources"]
 dependencies {
     implementation (
             // mybatis
-            'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2',
-            'mysql:mysql-connector-java:8.0.30'
+            'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2',
+            'com.mysql:mysql-connector-j:8.1.0'
 
     )
     testImplementation group: 'junit', name: 'junit', version: '4.12'
