@@ -10,7 +10,7 @@ buildscript {
     buildscript {
         //配置全局依赖版本信息
         ext {  //定义一个变量，统一规定springboot的版本
-            springBootVersion = '3.1.1'
+            springBootVersion = '3.1.4'
         }
         repositories {
             mavenLocal()
@@ -57,12 +57,12 @@ subprojects {
                 "org.springframework.boot:spring-boot-starter-logging:${springBootVersion}",
                 "org.springframework.boot:spring-boot-devtools:${springBootVersion}",
 
-                "com.google.guava:guava:31.1-jre",
+                "com.google.guava:guava:32.1.2-jre",
                 "commons-lang:commons-lang:2.6",
-                group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
+                group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
 
         )
-        implementation group: 'com.alibaba', name: 'fastjson', version: '2.0.34'
+        implementation group: 'com.alibaba.fastjson2', name: 'fastjson2', version: '2.0.40'
 
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
