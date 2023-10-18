@@ -59,7 +59,7 @@ subprojects {
 
                 "com.google.guava:guava:32.1.2-jre",
                 "commons-lang:commons-lang:2.6",
-                group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
+                group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
 
         )
         implementation group: 'com.alibaba.fastjson2', name: 'fastjson2', version: '2.0.40'
