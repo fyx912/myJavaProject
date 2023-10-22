@@ -1,0 +1,8 @@
+rootProject.name = 'springcloud-alibaba'
+include 'spring-cloud-nacos-consumer'
+include 'spring-cloud-nacos-provider'
+include 'spring-cloud-nacos-gateway'
+include 'spring-cloud-nacos-dubbo-product'
+include 'spring-cloud-nacos-dubbo-consumer'
+include 'spring-cloud-nacos-dubbo-api'
+

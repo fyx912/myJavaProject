@@ -1,0 +1,140 @@
+server:
+  port: 8030
+spring:
+  application:
+    name: feign-service
+  profiles:
+    active: dev
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+############################################
+# spring cloud config 配置
+############################################
+  cloud:
+    config:
+      discovery:
+#       uri: http://localhost:7001/    #Config server的uri
+        enabled: true #开启配置服务发现
+        service-id: config-service  #配置中心服务名
+      #指定分支
+      label: master
+      #指定环境
+      profile: ${spring.profiles.active}
+      #失败快速响应与重试
+      fail-fast: true
+      #配置中心配置文件名
+      name: feign-service
+      retry:
+        initial-interval: 1000 #最初重试间隔为 1000 毫秒
+        max-attempts: 6  # 最多重试 6 次
+        max-interval: 2000 #最长重试间隔为 2000 毫秒
+        multiplier: 1.1 #每次重试失败后，重试间隔所增加的倍数
+    bus:
+      enabled: true # 开启消息跟踪
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+
+  #服务链路追踪
+  zipkin:
+    sender:
+      type: web
+    base-url: http://localhost:8060/
+    locator:
+      discovery:
+        enabled: true
+    discovery-client-enabled: true
+
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      # 默认的采样比率为0.1，不能看到所有请求数据
+      # 更改采样比率为1，就能看到所有的请求数据了，但是这样会增加接口调用延迟
+#      probability: 1.0
+      percentage: 1
+# 配置关闭安全验证
+management:
+  security:
+    enabled: false
+
+security:
+  user:
+    name: admin
+    password: 123456
+  basic:
+    enabled: false
+
+eureka:
+  #自己编写，用于修改注册中心的服务地址
+  serverUrl: 127.0.0.1
+  port: 8010
+  client:
+    service-url:
+      defaultZone: http://${security.user.name}:${security.user.password}@${eureka.serverUrl}:${eureka.port}/eureka/
+  instance:
+    instance-id:  ${spring.cloud.client.ipAddress}:${server.port}(${spring.application.name})
+    prefer-ip-address: true
+
+ribbon:
+  #请求处理的超时时间
+  ReadTimeout: 4000
+  #请求连接的超时时间
+  ConnectTimeout: 5000
+  #对当前服务的重试次数
+  MaxAutoRetries: 2
+  #切换实例的重试次数
+  MaxAutoRetriesNextServer: 0
+  #对所有操作请求都进行重试
+  OkToRetryOnAllOperations: true
+
+
+
+feign:
+  hystrix:
+    enabled: true #开启熔断
+  httpclient:
+    connection-timeout: 5000
+  client:
+    config:
+      default:
+        connect-timeout: 5000
+        read-timeout: 5000 #feign方式读取数据超时,开始熔断(读取时间应该大于被调用方法的时间就不会被熔断,否则会被熔断)
+
+#开启hystrix请求超时机制   也可以设置成永久不超时
+hystrix:
+  command:
+    default: #default全局有效，service id指定应用有效
+      execution:
+        timeout:
+          #如果enabled设置为false，则请求超时交给ribbon或feign控制,为true,则超时作为熔断根据
+          enabled: false #此值需设置为false，为true的时候下面的熔断超时不起作用立马熔断
+      isolation:
+        thread:
+          timeoutInMilliseconds: 8000 #设置超时时间为20s
+
+#    ribbon-service: #default全局有效，service id指定应用有效
+#      execution:
+#        timeout:
+#          #如果enabled设置为false，则请求超时交给ribbon控制,为true,则超时作为熔断根据
+#          enabled: true
+#      isolation:
+#        thread:
+#          timeoutInMilliseconds: 50000 #设置超时时间为20s
+
+
+info:
+  name: ${spring.application.name}
+  build:
+    name: ${project.name:}
+    artifact: ${project.arfitactId:}
+    version: ${project.version:}
+    time: ${build.time}

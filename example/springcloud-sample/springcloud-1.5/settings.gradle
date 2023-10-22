@@ -1,0 +1,11 @@
+rootProject.name = 'springcloud-1.5'
+include 'eureka-server'
+include 'ribbon-service'
+include 'feign-service'
+include 'zuul'
+include 'Hystrix-Turbine'
+include 'config-service'
+include 'zipkin-service'
+include 'admin-server'
+include 'consul-client'
+

@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation (
+            "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:${springcloudNetflixVersion}",
+            //路由
+            "org.springframework.cloud:spring-cloud-starter-netflix-zuul:${springcloudNetflixVersion}",
+            //熔断
+            "org.springframework.cloud:spring-cloud-starter-netflix-hystrix:${springcloudNetflixVersion}",
+
+            //链路追踪
+            "org.springframework.cloud:spring-cloud-starter-zipkin:1.3.6.RELEASE",
+    )
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}

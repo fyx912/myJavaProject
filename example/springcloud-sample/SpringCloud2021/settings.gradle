@@ -1,0 +1,5 @@
+rootProject.name = 'SpringCloud2021'
+include 'springCloud-gateway'
+include 'springCloud-consumer'
+include 'springCloud-provider'
+

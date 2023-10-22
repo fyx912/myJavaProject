@@ -1,0 +1,78 @@
+//buildscript代码块中的声明是gradle脚本自身需要的资源。
+buildscript{
+
+    ext {  //定义一个变量，统一规定springboot的版本
+        springBootVersion = '2.7.17'
+        springCloudVersion = '2021.0.8'
+        springCloudAlibabaVersion ='2021.0.4.0'
+    }
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://central.maven.org/maven2/" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath (
+                "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        )
+    }
+}
+
+/* 所有项目的通用配置 */
+allprojects{
+    group 'com.ding'
+    version '1.0-SNAPSHOT'
+    apply plugin: 'java'
+//    apply plugin: 'java-platform' // 引入 java-platform插件
+    apply plugin: "maven-publish" // 发布插件，可用来发布 BOM 或 jar到本地与远程仓库
+    apply plugin: 'idea'
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://central.maven.org/maven2/" }
+        mavenCentral()
+    }
+    //指定编码格式
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+}
+/* 所有子项目的通用配置 */
+subprojects {
+    apply plugin: 'io.spring.dependency-management' /* 依赖管理，用来传递spring的依赖 */
+    dependencies {
+        implementation(
+                "org.springframework.boot:spring-boot-starter-web",
+                "org.springframework.boot:spring-boot-starter-logging",
+                "org.springframework.boot:spring-boot-starter-actuator",
+
+                "org.springframework.cloud:spring-cloud-loadbalancer",
+                "org.springframework.cloud:spring-cloud-starter-openfeign",
+
+                "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery",
+
+                "com.alibaba:fastjson:2.0.12",
+                group: 'org.projectlombok', name: 'lombok', version: '1.18.22',
+//                "io.springfox:springfox-boot-starter:3.0.0"
+        )
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+            mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
+        }
+    }
+
+}
+
+
+test {
+    useJUnitPlatform()
+}

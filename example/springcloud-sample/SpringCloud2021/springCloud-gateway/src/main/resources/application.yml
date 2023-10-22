@@ -1,0 +1,82 @@
+server:
+  port: 9005
+  servlet:
+    context-path: api
+#注册中心ip和端口
+register:
+  nacos:
+    ip: 192.168.0.21
+    port: 8848
+  sentinel:
+    ip: 127.0.0.1
+    port: 8080
+
+spring:
+  application:
+    name: service-gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    #nacos 注册中心
+    nacos:
+      discovery:
+        server-addr: ${register.nacos.ip}:${register.nacos.port}
+    sentinel:
+      eager: true #取消延迟加载（默认是延迟加载的）
+      transport:
+        dashboard: ${register.sentinel.ip}:${register.sentinel.port}
+      datasource:
+        ds:
+          nacos:
+            server-addr: ${register.nacos.ip}:${register.nacos.port}
+            data-id: ${spring.application.name}-sentinel  # \u8BFB\u53D6\u914D\u7F6E\u6587\u4EF6\u7684 data-id
+            group-id: DEFAULT_GROUP
+            data-type: json  #
+            rule-type: flow  #路由存储规则
+
+
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能，利用微服务名进行路由
+          lower-case-service-id: true
+#      全局 HTTP 超时示例
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 5s
+      routes:
+        - id: service-provider-route  #路由 id,没有固定规则，但唯一，建议与服务名对应
+          uri: lb://service-provider
+          #以下是断言条件，必选全部符合条件
+          predicates:
+            - Path=/service-provider/**
+#            - name: hystrix
+#              args:
+#                name: defaultFallback
+#                fallbackUri: forward:/defaultFallback
+#            - Method=GET #只能时 GET 请求时，才能访问
+#         GatewayFilter 网关过滤器
+          filters:
+            - StripPrefix=1
+          #路由 HTTP 超时配置
+#          metadata:
+#            response-timeout: 200
+#            connect-timeout: 200
+
+# hystrix 信号量隔离，1.5秒后自动超时
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 1500
+
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
