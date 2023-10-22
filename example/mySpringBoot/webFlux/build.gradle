@@ -17,7 +17,13 @@ configurations {
 
 dependencies {
     implementation (
-            "org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}"
+            "org.springframework.boot:spring-boot-starter-webflux",
+            "org.springframework.boot:spring-boot-starter-data-r2dbc",
+            "io.r2dbc:r2dbc-pool:1.0.1.RELEASE"
     )
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    runtimeOnly(
+            "io.asyncer:r2dbc-mysql:1.0.5",
+            "com.mysql:mysql-connector-j:8.1.0"
+    )
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 }

@@ -1,5 +1,7 @@
 package com.ding.common.utils.json;
 
+import lombok.Getter;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +9,7 @@ import java.io.Serializable;
  * @create 27 2:43
  * @description
  */
+@Getter
 public class ApiResult<T> implements Serializable {
     //状态码
     private Integer code;
@@ -55,32 +58,16 @@ public class ApiResult<T> implements Serializable {
         return apiResult;
     }
 
-    public Integer getCode() {
-        return code;
-    }
-
     public void setCode(Integer code) {
         this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
     }
 
-    public String getCause() {
-        return cause;
-    }
-
     public void setCause(String cause) {
         this.cause = cause;
-    }
-
-    public T getData() {
-        return data;
     }
 
     public void setData(T data) {

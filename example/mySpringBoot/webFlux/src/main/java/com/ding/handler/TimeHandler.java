@@ -1,4 +1,4 @@
-package com.ding.web;
+package com.ding.handler;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -14,9 +14,9 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 /**
  * @author tintin
  * @version V1.0
- * @Description
- * @@copyright
- * @ClassName TimeHandle
+ * @description
+ * @copyright
+ * @className TimeHandle
  * @date 2020-12-03 18:43
  */
 @Component
