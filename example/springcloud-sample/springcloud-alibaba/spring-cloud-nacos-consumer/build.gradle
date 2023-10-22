@@ -11,9 +11,9 @@ repositories {
 
 dependencies {
     implementation (
-            "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-web",
             "org.springframework.cloud:spring-cloud-starter-openfeign",
             "com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel"
     )
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 }

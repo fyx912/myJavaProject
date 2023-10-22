@@ -54,8 +54,8 @@ subprojects {
 
                 "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery",
 
-                "com.alibaba:fastjson:2.0.12",
-                group: 'org.projectlombok', name: 'lombok', version: '1.18.22',
+                "com.alibaba:fastjson:2.0.40",
+                group: 'org.projectlombok', name: 'lombok', version: '1.18.30',
 //                "io.springfox:springfox-boot-starter:3.0.0"
         )
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
