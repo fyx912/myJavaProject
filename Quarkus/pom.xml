@@ -68,21 +68,6 @@
 
    </dependencies>
 
-    <!-- snapshot快照库和release发布库的地址,id和setting.xml中的server一致 -->
-    <distributionManagement>
-        <repository>
-            <id>nexus-releases</id>
-            <name>Packaging Release Repository</name>
-            <url>https://nexus.beetest.com.cn/repository/maven-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>nexus-snapshots</id>
-            <name>Packaging Snapshot Repository</name>
-            <url>https://nexus.beetest.com.cn/repository/maven-snapshots/</url>
-            <uniqueVersion>true</uniqueVersion>
-        </snapshotRepository>
-    </distributionManagement>
-
    <build>
        <plugins>
            <plugin>
