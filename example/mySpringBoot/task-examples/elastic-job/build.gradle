@@ -1,4 +1,4 @@
-group 'com.ding'
+group 'com.ding.task'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
