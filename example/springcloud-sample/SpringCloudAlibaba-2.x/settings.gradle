@@ -1,4 +1,4 @@
-rootProject.name = 'springcloud-alibaba'
+rootProject.name = 'SpringCloudAlibaba-2.x'
 include 'spring-cloud-nacos-consumer'
 include 'spring-cloud-nacos-provider'
 include 'spring-cloud-nacos-gateway'
