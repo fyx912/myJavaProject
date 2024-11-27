@@ -16,4 +16,5 @@ include 'task-examples:elastic-job'
 findProject(':task-examples:elastic-job')?.name = 'elastic-job'
 include 'task-examples:quartz'
 findProject(':task-examples:quartz')?.name = 'quartz'
+include 'aliyunOSS'
 

@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+group = 'com.ding'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//    implementation(project(':ding-project-business:ding-business-provider'))
+
+    api project(':ding-boot-starter')
+}

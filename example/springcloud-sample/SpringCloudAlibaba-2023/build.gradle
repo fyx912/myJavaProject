@@ -1,0 +1,61 @@
+group 'com.ding'
+version = '1.0-SNAPSHOT'
+
+//buildscript {
+//    ext {
+//        springBootVersion = '3.2.12'
+//        springCloudVersion = '2023.0.3'
+//        springCloudAlibabaVersion = '2023.0.1.0'
+//    }
+//
+//    //设置仓库
+//    repositories {
+//        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+//        maven { url 'https://nexus.beetest.com.cn/repository/maven-public/'}
+//    }
+//
+////    dependencies {
+////        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+////    }
+//}
+
+////配置全局, 包括root项目和子项目
+//allprojects {
+//    //设置仓库
+//    repositories {
+//        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+//        maven { url 'https://nexus.beetest.com.cn/repository/maven-public/'}
+//    }
+//
+//    //配置编码格式
+//    tasks.withType(JavaCompile).tap {
+//        configureEach {
+//            options.encoding = "UTF-8"
+//        }
+//    }
+//}
+//
+////配置所有子项目
+//subprojects {
+////    apply plugin: 'java'
+//    apply plugin: 'idea'
+////    apply plugin: 'org.springframework.boot'
+//    apply plugin: 'io.spring.dependency-management'
+//
+//    dependencies{
+////        api project("ding-dependencies")
+////        implementation(
+////                "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config",
+////                "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery"
+////        )
+//    }
+//
+////    dependencyManagement {
+////        imports {
+////            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+////            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+////            mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
+//////             platform(project(':ding-dependencies'))
+////        }
+////    }
+//}

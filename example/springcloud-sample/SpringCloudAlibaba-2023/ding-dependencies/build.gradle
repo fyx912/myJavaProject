@@ -1,0 +1,68 @@
+plugins {
+    id 'java-platform'
+    id 'maven-publish'
+}
+
+
+javaPlatform {
+    allowDependencies()
+}
+
+ext{
+    springBootVersion = '3.2.12'
+    springCloudVersion = '2023.0.3'
+    springCloudAlibabaVersion = '2023.0.1.0'
+}
+description 'dependencies库'
+
+dependencies {
+    // 这里添加额外的依赖版本控制
+    api platform(project(":ding-project-parent"))
+    api platform('org.springframework.boot:spring-boot-dependencies:'+springBootVersion) {
+        because("Spring Boot BOM")
+    }
+    api platform("org.springframework.cloud:spring-cloud-dependencies:"+springCloudVersion) {
+        because("Spring Cloud BOM")
+    }
+    api platform("com.alibaba.cloud:spring-cloud-alibaba-dependencies:"+springCloudAlibabaVersion) {
+        because("Spring Cloud Alibaba BOM")
+    }
+    api platform('org.junit:junit-bom:5.10.0')
+
+    api platform('org.junit:junit-bom:5.10.0')
+    api 'org.junit.jupiter:junit-jupiter'
+
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+}
+
+//配置所有子项目
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    dependencies{
+        api project("ding-dependencies")
+        api (
+                "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config",
+                "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery"
+        )
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+            mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
+        }
+    }
+}
+
+publishing {
+    publications {
+        myPlatform(MavenPublication) {
+            from components.javaPlatform
+        }
+    }
+}

@@ -1,0 +1,9 @@
+server:
+  port: 9102
+
+spring:
+  application:
+    name: ding-business-provider
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848

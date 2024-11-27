@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'java-library'   //使用 Java Library 插件
+}
+group = 'com.ding'
+version = '1.0-SNAPSHOT'
+description 'my boot  start库'
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17)) // 或者你希望使用的 Java 版本
+    }
+}
+dependencies {
+    api platform(project(":ding-dependencies"))
+    api 'org.springframework.boot:spring-boot-starter-web'
+    api "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery"
+//    api "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config"
+}
+

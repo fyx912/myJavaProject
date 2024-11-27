@@ -1,0 +1,26 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'com.ding'
+version = '1.0-SNAPSHOT'
+description '组件库'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    api platform(project(":ding-project-parent"))
+    implementation(project(":ding-boot-starter"))
+
+    // 组件间的依赖
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}

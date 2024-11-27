@@ -1,0 +1,6 @@
+oss:
+  endpoint: http://xxx.aliyuncs.com
+  accessKeyId: xxx
+  accessKeySecret: xxx
+  bucketName: dev-bucketName
+  urlPrefix:  111

@@ -1,0 +1,5 @@
+rootProject.name = 'ding-project-business'
+includeBuild(':ding-project-parent')
+include 'ding-business-gateway'
+include 'ding-business-consumer'
+include 'ding-business-provider'
